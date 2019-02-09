@@ -2,12 +2,22 @@ const express = require("express");
 const logger = require("morgan")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
+const path = require("path")
 
 const app = express();
 
 //Required Routes
 const routes = require("./routes/")
 app.use(routes);
+
+// IF in Production:
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static("client/build"))
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  } )
+}
 
 //Bodyparser Middelware
 app.use(bodyParser.json());
@@ -22,6 +32,9 @@ mongoose
   .connect(db, {useNewUrlParser : true})
   .then(() => console.log("SUCCESSFUL MONGODB CONNECTION") )
   .catch(err => console.log(err));
+
+
+
 
 //Port info
 const port = process.env.PORT || 5000;
