@@ -11,7 +11,6 @@ const routes = require("./routes/")
 app.use(routes);
 
 // IF in Production:
-
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static("client/build"))
   app.get("*", (req, res) => {
@@ -32,9 +31,6 @@ mongoose
   .connect(db, {useNewUrlParser : true})
   .then(() => console.log("SUCCESSFUL MONGODB CONNECTION") )
   .catch(err => console.log(err));
-
-
-
 
 //Port info
 const port = process.env.PORT || 5000;
