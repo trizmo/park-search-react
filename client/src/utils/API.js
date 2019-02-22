@@ -5,6 +5,7 @@ const BASEURL = "https://developer.nps.gov/api/v1/parks?stateCode=";
 
 export default {
   search: function(query) {
+    console.log("getting data", BASEURL + query)
     return axios.get(BASEURL + query + APIKEY.NPS_API_KEY);
   },
 
