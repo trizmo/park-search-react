@@ -43,7 +43,7 @@ export default class Favorites extends Component {
 
         <h2 style={headStyle}>Favorites</h2>
 
-        {this.state.favorites.length ? (
+        {this.state.favorites.length >= 1 ? (
           <ListGroup>
             {this.state.favorites.map(result => (
 

@@ -6,6 +6,10 @@ const path = require("path")
 
 const app = express();
 
+//Required Routes
+const routes = require("./routes/")
+app.use(routes);
+
 // IF in Production:
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static("client/build"))
@@ -14,9 +18,7 @@ if(process.env.NODE_ENV === 'production'){
   } )
 }
 
-//Required Routes
-const routes = require("./routes/")
-app.use(routes);
+
 
 //Bodyparser Middelware
 app.use(bodyParser.json());
