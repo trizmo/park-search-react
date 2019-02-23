@@ -17,6 +17,7 @@ export default class Favorites extends Component {
 
   loadFavorites = () => {
     API.getFavorites()
+      .then(res => res.json)
       .then(res => this.setState({
         favorites: res.data
       }))
